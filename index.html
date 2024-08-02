@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Search Results</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1a2632;
+            border-top: 1px solid #243647;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        .bottom-nav a {
+            text-align: center;
+            color: #93adc8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .bottom-nav a.active {
+            color: #ffffff;
+            pointer-events: none; /* Disable click on active link */
+        }
+        .bottom-nav div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bottom-nav span {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .wallpaper-item {
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .aspect-square {
+            padding-top: 100%;
+            position: relative;
+        }
+        .aspect-square img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .zoom-btn, .download-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .download-btn {
+            right: 50px;
+        }
+        .zoom-btn:hover, .download-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
+
+        /* Translation notification styles */
+        #translation-notification {
+            position: fixed;
+            top: 4%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a2632;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            max-width: 80%;
+            text-align: center;
+        }
+        #translation-notification button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        #translation-notification button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body class="bg-[#111a22] text-white">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-[#111a22] p-4 flex justify-between items-center">
+            <button class="p-2 rounded-full hover:bg-[#1a2632] transition-colors">
+                <span class="material-icons">notifications</span>
+            </button>
+            <h1 class="text-xl font-bold text-center flex-grow">Search Results</h1>
+            <div class="w-10"></div>
+        </header>
+
+        <main class="flex-grow pb-16">
+            <h2 class="text-2xl font-bold px-4 py-5">Results</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
+                <div class="wallpaper-item rounded-lg overflow-hidden">
+                    <div class="aspect-square bg-cover bg-center" style="background-image: url('https://i.pinimg.com/236x/4f/b8/6a/4fb86a0d58a83bb5caf14fd5b0d6b9f6.jpg');">
+                        <button class="zoom-btn">
+                            <span class="material-icons text-black">zoom_in</span>
+                        </button>
+                        <a href="https://i.pinimg.com/236x/4f/b8/6a/4fb86a0d58a83bb5caf14fd5b0d6b9f6.jpg" download class="download-btn">
+                            <span class="material-icons text-black">download</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="wallpaper-item rounded-lg overflow-hidden">
+                    <div class="aspect-square bg-cover bg-center" style="background-image: url('https://i.pinimg.com/236x/e3/95/05/e395051cd7db4d67c4a3277cce3d1b13.jpg');">
+                        <button class="zoom-btn">
+                            <span class="material-icons text-black">zoom_in</span>
+                        </button>
+                        <a href="https://i.pinimg.com/236x/e3/95/05/e395051cd7db4d67c4a3277cce3d1b13.jpg" download class="download-btn">
+                            <span class="material-icons text-black">download</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="wallpaper-item rounded-lg overflow-hidden">
+                    <div class="aspect-square bg-cover bg-center" style="background-image: url('https://i.pinimg.com/236x/fb/65/07/fb6507908a708a1b2426b1fdf86d9bf7.jpg');">
+                        <button class="zoom-btn">
+                            <span class="material-icons text-black">zoom_in</span>
+                        </button>
+                        <a href="https://i.pinimg.com/236x/fb/65/07/fb6507908a708a1b2426b1fdf86d9bf7.jpg" download class="download-btn">
+                            <span class="material-icons text-black">download</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="wallpaper-item rounded-lg overflow-hidden">
+                    <div class="aspect-square bg-cover bg-center" style="background-image: url('https://i.pinimg.com/236x/44/d0/8b/44d08bed4145092870be3e07d16afcc6.jpg');">
+                        <button class="zoom-btn">
+                            <span class="material-icons text-black">zoom_in</span>
+                        </button>
+                        <a href="https://i.pinimg.com/236x/44/d0/8b/44d08bed4145092870be3e07d16afcc6.jpg" download class="download-btn">
+                            <span class="material-icons text-black">download</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="wallpaper-item rounded-lg overflow-hidden">
+                    <div class="aspect-square bg-cover bg-center" style="background-image: url('https://i.pinimg.com/236x/ec/2f/98/ec2f98e7b7d4d4bca4b2126a0a80bf46.jpg');">
+                        <button class="zoom-btn">
+                            <span class="material-icons text-black">zoom_in</span>
+                        </button>
+                        <a href="https://i.pinimg.com/236x/ec/2f/98/ec2f98e7b7d4d4bca4b2126a0a80bf46.jpg" download class="download-btn">
+                            <span class="material-icons text-black">download</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="wallpaper-item rounded-lg overflow-hidden">
+                    <div class="aspect-square bg-cover bg-center" style="background-image: url('https://i.pinimg.com/236x/2b/f0/db/2bf0db1b58421ab2c7198ceae15f00c7.jpg');">
+                        <button class="zoom-btn">
+                            <span class="material-icons text-black">zoom_in</span>
+                        </button>
+                        <a href="https://i.pinimg.com/236x/2b/f0/db/2bf0db1b58421ab2c7198ceae15f00c7.jpg" download class="download-btn">
+                            <span class="material-icons text-black">download</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="home.html" id="home-link" class="active">
+                <div class="material-icons">home</div>
+                <span>Home</span>
+            </a>
+            <a href="rs.html" id="search-link">
+                <div class="material-icons">search</div>
+                <span>Search</span>
+            </a>
+            <a href="#" id="favorites-link">
+                <div class="material-icons">favorite</div>
+                <span>Favorites</span>
+            </a>
+            <a href="#" id="settings-link">
+                <div class="material-icons">settings</div>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Translation notification -->
+    <div id="translation-notification">
+        <p>Would you like to switch to Arabic?</p>
+        <button id="translate-yes">Yes</button>
+        <button id="translate-no">No</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set active state for the current page
+            const path = window.location.pathname;
+            const page = path.split('/').pop(); // Get the filename from the path
+            const navLinks = document.querySelectorAll('.bottom-nav a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === page) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Show translation notification after 1 second
+            setTimeout(() => {
+                document.getElementById('translation-notification').style.display = 'block';
+            }, 1000);
+
+            // Handle translation notification
+            document.getElementById('translate-yes').addEventListener('click', function() {
+                translateToArabic();
+                document.getElementById('translation-notification').style.display = 'none';
+            });
+
+            document.getElementById('translate-no').addEventListener('click', function() {
+                document.getElementById('translation-notification').style.display = 'none';
+            });
+        });
+
+        function translateToArabic() {
+            const translations = {
+                'Search Results': 'نتائج البحث',
+                'Results': 'النتائج',
+                'Home': 'الصفحة الرئيسية',
+                'Search': 'بحث',
+                'Favorites': 'المفضلة',
+                'Settings': 'الإعدادات'
+            };
+
+            document.querySelectorAll('h1, h2, span').forEach(element => {
+                if (translations[element.textContent]) {
+                    element.textContent = translations[element.textContent];
+                }
+            });
+
+            document.documentElement.lang = 'ar';
+            document.documentElement.dir = 'rtl';
+            document.body.style.fontFamily = '"Cairo", sans-serif';
+        }
+    </script>
+</body>
+</html>

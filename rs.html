@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1a2632;
+            border-top: 1px solid #243647;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        .bottom-nav a {
+            text-align: center;
+            color: #93adc8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .bottom-nav a.active {
+            color: #ffffff;
+        }
+        .bottom-nav div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bottom-nav span {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .category-item {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .category-item:hover {
+            transform: scale(1.05);
+        }
+        .category-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .category-item:hover::before {
+            opacity: 1;
+        }
+        .category-item p {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#111a22] text-white">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-[#111a22] p-4 flex justify-between items-center">
+            <button class="p-2 rounded-full hover:bg-[#1a2632] transition-colors">
+                <span class="material-icons">notifications</span>
+            </button>
+            <h1 class="text-xl font-bold text-center flex-grow">Wallpapers</h1>
+            <div class="w-10"></div>
+        </header>
+
+        <main class="flex-grow pb-16">
+            <h2 class="text-2xl font-bold px-4 py-5">Categories</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
+                <div class="category-item bg-cover bg-center rounded-full aspect-square flex items-center justify-center" style="background-image: linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(20, 20, 20, 0.4)), url('https://i.pinimg.com/236x/39/d5/22/39d52280eb439f487c6553cd2710bbd2.jpg');">
+                    <p class="text-white text-lg font-bold text-center">Anime</p>
+                </div>
+                <div class="category-item bg-cover bg-center rounded-full aspect-square flex items-center justify-center" style="background-image: linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(20, 20, 20, 0.4)), url('https://i.pinimg.com/474x/bf/e0/cf/bfe0cf8cd7ca879b83cab72e7ffc0663.jpg');">
+                    <p class="text-white text-lg font-bold text-center">Nature</p>
+                </div>
+                <div class="category-item bg-cover bg-center rounded-full aspect-square flex items-center justify-center" style="background-image: linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(20, 20, 20, 0.4)), url('https://i.pinimg.com/236x/29/99/f3/2999f37475885caa799ede64276e4d8e.jpg');">
+                    <p class="text-white text-lg font-bold text-center">Art</p>
+                </div>
+                <div class="category-item bg-cover bg-center rounded-full aspect-square flex items-center justify-center" style="background-image: linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(20, 20, 20, 0.4)), url('https://i.pinimg.com/236x/62/b8/15/62b8150ff4581c93586168e635f0ccbf.jpg');">
+                    <p class="text-white text-lg font-bold text-center">Space</p>
+                </div>
+                <div class="category-item bg-cover bg-center rounded-full aspect-square flex items-center justify-center" style="background-image: linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(20, 20, 20, 0.4)), url('https://i.pinimg.com/236x/d1/ad/40/d1ad40aafe0b44b33ff000d23f4e7fbf.jpg');">
+                    <p class="text-white text-lg font-bold text-center">Games</p>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="#" class="active" data-page="home">
+                <div class="material-icons">home</div>
+                <span>Home</span>
+            </a>
+            <a href="#" data-page="search">
+                <div class="material-icons">search</div>
+                <span>Search</span>
+            </a>
+            <a href="#" data-page="videos">
+                <div class="material-icons">videocam</div>
+                <span>Videos</span>
+            </a>
+            <a href="#" data-page="settings">
+                <div class="material-icons">settings</div>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Translation notification -->
+    <div id="translation-notification" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-[#1a2632] text-white px-6 py-4 rounded-lg shadow-lg hidden max-w-sm w-full">
+        <p class="text-center mb-4">Would you like to translate this page to Arabic?</p>
+        <div class="flex justify-center space-x-4">
+            <button id="translate-yes" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-300">Yes</button>
+            <button id="translate-no" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">No</button>
+        </div>
+    </div>
+
+    <script>
+        // Bottom navigation functionality
+        document.querySelectorAll('.bottom-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.bottom-nav a').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                console.log(`Navigated to page: ${this.dataset.page}`);
+            });
+        });
+
+        // Translation notification
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('translation-notification').classList.remove('hidden');
+            }, 1000);
+
+            document.getElementById('translate-yes').addEventListener('click', function() {
+                translateToArabic();
+                document.getElementById('translation-notification').classList.add('hidden');
+            });
+
+            document.getElementById('translate-no').addEventListener('click', function() {
+                document.getElementById('translation-notification').classList.add('hidden');
+            });
+        });
+
+        function translateToArabic() {
+            // This is a simplified translation. In a real-world scenario, you'd use a proper translation service.
+            const translations = {
+                'Wallpapers': 'خلفيات',
+                'Categories': 'الفئات',
+                'Anime': 'أنمي',
+                'Nature': 'طبيعة',
+                'Art': 'فن',
+                'Space': 'فضاء',
+                'Games': 'ألعاب',
+                'Home': 'الرئيسية',
+                'Search': 'بحث',
+                'Videos': 'فيديوهات',
+                'Settings': 'الإعدادات'
+            };
+
+            document.querySelectorAll('h1, h2, p, span').forEach(element => {
+                if (translations[element.textContent]) {
+                    element.textContent = translations[element.textContent];
+                }
+            });
+
+            document.documentElement.lang = 'ar';
+            document.documentElement.dir = 'rtl';
+            document.body.style.fontFamily = '"Cairo", sans-serif';
+        }
+    </script>
+</body>
+</html>
